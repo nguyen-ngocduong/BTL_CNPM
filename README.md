@@ -4,12 +4,11 @@
 
 ### Thành viên
 
-
-| `Họ tên`               | `Mã sinh viên` |
+| Họ tên | Mã sinh viên |
 | ------------------------ | ---------------- |
-| `Trần Văn An`          | `B22DCVT`        |
-| `Lê Thành Danh`        | `B22DCVT`        |
-| `Nguyễn Ngọc Dương`  | `B22DCVT112`     |
+|`Trần Văn An`| `B22DCVT`        |
+|  `Lê Thành Danh` | `B22DCVT`        |
+| `Nguyễn Ngọc Dương` | `B22DCVT112`     |
 | `Nguyễn Triều Dương` | `B22DCVT115`     |
 | `Vương Văn Sáng`     | `B22DCVT`        |
 
@@ -18,3 +17,4 @@
 ### Yêu cầu:
 
 ![alt text](jpg/anh1.jpeg)
+

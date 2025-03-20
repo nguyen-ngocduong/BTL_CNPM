@@ -456,5 +456,5 @@ categories = [
 
 # ## RUNNING
 # pipeline(categories)
-csv_processer = CSVDataBaseImport(csv_path = f"data/origin/laptop.csv", folder_name = "laptop")
+csv_processer = CSVDataBaseImport(csv_path = f"data/laptop.csv", folder_name = "laptop")
 csv_processer.run()

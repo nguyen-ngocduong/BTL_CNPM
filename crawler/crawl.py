@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
@@ -25,14 +25,12 @@ logging.info("------Log file --------")
 
 
 def chrome_webdriver():
-    chromedriver_path = '/usr/local/bin/chromedriver'
-    user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' \
-                'Chrome/123.0.0.0 Safari/537.36'
     options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
-    options.add_argument('--headless')
-    options.add_argument(f'user-agent={user_agent}')
-    service = Service(executable_path=chromedriver_path)
+    options.add_argument("--headless")  # Chạy Chrome không hiển thị giao diện
+    options.add_argument("--disable-gpu")  # Tắt GPU tăng hiệu suất
+    options.add_argument("--no-sandbox")  # Tránh lỗi sandbox trong môi trường Linux
+
+    service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
@@ -456,5 +454,5 @@ categories = [
 
 # ## RUNNING
 # pipeline(categories)
-csv_processer = CSVDataBaseImport(csv_path = f"data/origin/laptop.csv", folder_name = "laptop")
+csv_processer = CSVDataBaseImport(csv_path = f"data/laptop.csv", folder_name = "laptop")
 csv_processer.run()

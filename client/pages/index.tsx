@@ -1,13 +1,4 @@
-import {
-  Badge,
-  Card,
-  Container,
-  Grid,
-  Image,
-  Row,
-  Spacer,
-  Text,
-} from '@nextui-org/react';
+import {Badge,Card,Container,Grid,Image,Row,Spacer,Text,} from '@nextui-org/react';
 import type { NextPage } from 'next';
 import NextImg from 'next/image';
 import Head from 'next/head';
@@ -24,91 +15,39 @@ import useMediaQuery from '../libs/hooks/useMediaQuery';
 import { useProducts } from '../libs/swr/useProducts';
 import { ArticleType, ProductType } from '../types';
 import carousel1 from '../public/carousel-1.jpg';
-import anh2 from '../public/anh2.jpg';
-import anh3 from '../public/anh3.jpg';
-import anh1 from '../public/anh1.jpg';
+import carousel2 from '../public/carousel-2.jpg';
+import carousel3 from '../public/carousel-3.jpg';
+import carousel4 from '../public/carousel-4.jpg';
 import carousel5 from '../public/carousel-5.jpg';
 import carousel6 from '../public/carousel-6.jpg';
+import Chatbot from '../components/common/Chatbot';
 
 const Carousel = () => (
   <Swiper
     autoplay={{
-      delay: 4000,
+      delay: 1000,
       disableOnInteraction: false,
     }}
     slidesPerView={1}
     navigation={true}
     modules={[Navigation, Autoplay]}
+    style={{ zIndex: 10 }} // Đảm bảo Swiper không bị che khuất
   >
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={carousel1}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={anh2}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={anh3}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={anh1}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={carousel5}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <div style={{ width: '100%', height: '41.5vw' }}>
-        <NextImg
-          src={carousel6}
-          layout='fill'
-          priority
-          objectFit='cover'
-          alt='Default Image'
-        />
-      </div>
-    </SwiperSlide>
+    {[carousel1, carousel2, carousel3, carousel4, carousel5, carousel6].map((src, index) => (
+      <SwiperSlide key={index} style={{ overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', height: '41.5vw' }}>
+          <NextImg
+            src={src}
+            layout="fill" // Đảm bảo ảnh lấp đầy container
+            objectFit="cover"
+            priority
+            alt={`Slide ${index + 1}`}
+          />
+        </div>
+      </SwiperSlide>
+    ))}
   </Swiper>
-);
-
+)
 type ItemsListProps = {
   title: string;
   data?: ProductType[];
@@ -431,6 +370,7 @@ const IndexPage: NextPage = () => {
           <div style={{ marginTop: isXs ? 100 : 50 }}>
             <Articles />
           </div>
+            <Chatbot />
         </Container>
       </UserLayout>
     </>

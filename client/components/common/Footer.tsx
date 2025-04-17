@@ -67,25 +67,25 @@ const Footer = () => {
             </div>
             <div className='contactItem'>
               <AiFillMail color='7828C8' style={{ marginRight: '10px' }} />{' '}
-              triuduongg374@gmail.com
+              duongnt.b22vt115@stu.ptit.edu.vn
             </div>
           </Grid>
           <Grid xs={12} sm={4} md={3} direction='column' css={{ p: 20 }}>
             <h3 className='title'> Contribution </h3>
             <div className='contactItem'>
-              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Nguyen Ngoc Duong   
-            </div>
-            <div className='contactItem'>
-              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Vuong Van Sang
-            </div>
-            <div className='contactItem'>
-              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Nguyen Trieu Duong
-            </div>
-            <div className='contactItem'>
-              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Tran Van An
+              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Tran Van An   
             </div>
             <div className='contactItem'>
               <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Le Thanh Danh
+            </div>
+            <div className='contactItem'>
+              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Nguyen Ngoc Duong   
+            </div>
+            <div className='contactItem'>
+              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Nguyen Trieu Duong   
+            </div>
+            <div className='contactItem'>
+              <MdMeetingRoom color='7828C8' style={{ marginRight: '10px' }} />{' '} Vuong Van Sang  
             </div>
             <div className='contactItem'>
               <iframe

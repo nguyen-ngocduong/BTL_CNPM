@@ -30,6 +30,7 @@ const allFetcher = (url: string, body: any, token: string) => {
     })
     .then((res) => res.data);
 };
+
 const AllTabContent = ({
   page,
   setPage,
@@ -130,11 +131,11 @@ const AllTabContent = ({
           css={{ pt: 40, pb: 40, flexDirection: 'column' }}
         >
           <Image
-            width='100px'
-            height='100px'
+            width={100}
+            height={100}
             src='/order.png'
             alt='order Image'
-            objectFit='cover'
+            style={{ objectFit: 'cover' }}
           />
           <Text size='$2xl' css={{ mt: 20 }}>
             Chưa có đơn hàng

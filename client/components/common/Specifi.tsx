@@ -378,7 +378,7 @@ const Specifi: React.FC<{ productId: string }> = ({ productId }) => {
               <Text b>Loa</Text>
             </Col>
             <Col span={6}>
-              <Text>{specs.speaker}</Text>
+              <Text>Có</Text>
             </Col>
           </Row>
         </Modal.Body>

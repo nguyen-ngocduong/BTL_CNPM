@@ -1,4 +1,4 @@
-id,name,slug,description,isNew,isActive,isPopular,createdDate,updatedDate,categoryId
+id,name,slug,description,isNew,isActive,isPopular,createdDate,updatedDate,catergoryID
 0,iPhone 16 Pro Max (256GB) - Chính hãng VN/A,iphone-16-pro-max,,True,True,True,2025-03-02 06:15:49.679538,2025-03-02 06:15:49.680074,1
 1,iPhone 16 (128GB) - Chính hãng VN/A,iphone-16,,True,True,True,2025-03-02 06:15:49.679538,2025-03-02 06:15:49.680074,1
 2,Điện thoại iPhone 16e (128GB) - Chính hãng VN/A,iphone-16e-128gb,,True,True,True,2025-03-02 06:15:49.679538,2025-03-02 06:15:49.680074,1

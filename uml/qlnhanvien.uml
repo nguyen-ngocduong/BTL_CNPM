@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+
+actor "Quản lý" as admin
+
+rectangle "Hệ thống bán hàng" {
+  (Quản lý nhân viên) as manage_employee
+  (Tìm nhân viên) as search_employee
+  (Tạo nhân viên) as create_employee
+  (Sửa nhân viên) as edit_employee
+  (Xóa nhân viên) as delete_employee
+  
+  (Tài khoản) as account
+  (Mật khẩu) as password
+  (Vai trò) as role
+  (Nhân viên) as employee_role
+  (Quản lý) as manager_role
+  
+  admin --> manage_employee
+  
+  manage_employee .> search_employee
+  manage_employee .> create_employee
+  manage_employee .> edit_employee
+  manage_employee .> delete_employee
+  
+  search_employee .> account : <<include>>
+  
+  create_employee .> account : <<include>>
+  create_employee .> password : <<include>>
+  create_employee .> role : <<include>>
+  
+  edit_employee .> account : <<include>>
+  edit_employee .> password : <<include>>
+  edit_employee .> role : <<include>>
+  
+  role .> employee_role : <<include>>
+  role .> manager_role : <<include>>
+  
+}
+@enduml

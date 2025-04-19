@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+  (Quản lý sản phẩm) as manage_product
+  (Tạo sản phẩm) as create_product
+  (Sửa sản phẩm) as edit_product
+  (Xóa sản phẩm) as delete_product
+  
+  (Ảnh sản phẩm) as product_image
+  (Tên sản phẩm) as product_name
+  (Danh mục sản phẩm) as product_category
+  (Slug) as product_slug
+  (Mô tả sản phẩm) as product_description
+  (Phiên bản sản phẩm) as product_version
+  (Thuộc tính sản phẩm) as product_attributes
+  (Đơn giá sản phẩm) as product_price
+  (Số lượng sản phẩm) as product_quantity
+  (Trạng thái sản phẩm) as product_status
+  
+  manager --> manage_product
+  
+  manage_product .> create_product <<include>>
+  manage_product .> edit_product <<include>>
+  manage_product .> delete_product <<include>>
+  
+  create_product .> product_image : <<include>>
+  create_product .> product_name : <<include>>
+  create_product .> product_category : <<include>>
+  create_product .> product_slug : <<include>>
+  create_product .> product_description : <<include>>
+  create_product .> product_version : <<include>>
+  create_product .> product_attributes : <<include>>
+  create_product .> product_price : <<include>>
+  create_product .> product_quantity : <<include>>
+  create_product .> product_status : <<include>>
+  
+  edit_product .> product_image : <<include>>
+  edit_product .> product_name : <<include>>
+  edit_product .> product_category : <<include>>
+  edit_product .> product_slug : <<include>>
+  edit_product .> product_description : <<include>>
+  edit_product .> product_version : <<include>>
+  edit_product .> product_attributes : <<include>>
+  edit_product .> product_price : <<include>>
+  edit_product .> product_quantity : <<include>>
+  edit_product .> product_status : <<include>>
+}
+@enduml

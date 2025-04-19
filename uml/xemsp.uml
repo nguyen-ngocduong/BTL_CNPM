@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Xem sản phẩm) as view_product
+  (Danh mục) as category
+  (Thông số) as specs
+  (Giá bán) as price
+  (Biến thể) as variants
+  (Xem bình luận) as view_reviews
+  (Gửi bình luận) as post_review
+  (Thêm vào giỏ) as add_to_cart
+  (Số lượng) as quantity
+  
+  user --> view_product
+  
+  view_product .> category : <<include>>
+  view_product .> specs : <<include>>
+  view_product .> price : <<include>>
+  view_product .> variants : <<include>>
+  view_product .> view_reviews : <<include>>
+  view_reviews .> post_review : <<extend>>
+  add_to_cart .> quantity : <<extend>>
+  view_product .> add_to_cart : <<extend>>
+}
+@enduml

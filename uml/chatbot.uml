@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Chatbot) as chatbot
+  (Trò chuyện) as chat
+  (Gửi hình ảnh) as send_image
+  (Gửi emotion) as send_emotion
+  
+  user --> chatbot
+  chatbot .> chat : <<include>>
+  chat .> send_image : <<extend>>
+  chat .> send_emotion : <<extend>>
+}
+
+@enduml

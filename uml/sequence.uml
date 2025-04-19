@@ -1,0 +1,50 @@
+@startuml
+title UML Sequence Diagrams for Ecommerce System
+
+actor User
+participant Client
+participant Server
+participant "Payment Gateway" as PaymentGateway
+
+== 1. Đăng nhập/đăng ký người dùng ==
+User -> Client: Nhập thông tin đăng ký/đăng nhập
+Client -> Server: Gửi yêu cầu đăng ký/đăng nhập
+Server -> Server: Xác thực thông tin, tạo tài khoản hoặc kiểm tra
+Server --> Client: Trả kết quả đăng nhập/đăng ký
+Client --> User: Hiển thị kết quả
+
+== 2. Quản lý giỏ hàng ==
+User -> Client: Thêm/sửa/xóa sản phẩm trong giỏ hàng
+Client -> Client: Cập nhật trạng thái giỏ hàng local (redux)
+Client -> Server: Gửi yêu cầu lấy thông tin chi tiết sản phẩm (nếu cần)
+Server --> Client: Trả dữ liệu sản phẩm
+Client --> User: Hiển thị giỏ hàng cập nhật
+
+== 3. Đặt hàng và thanh toán ==
+User -> Client: Xác nhận đặt hàng, nhập thông tin giao hàng, chọn phương thức thanh toán
+Client -> Server: Gửi yêu cầu tạo đơn hàng với thông tin và giỏ hàng
+Server -> Server: Lưu đơn hàng, xử lý nghiệp vụ
+Server --> Client: Trả kết quả tạo đơn hàng
+Client -> PaymentGateway: Khởi tạo thanh toán (nếu chọn ZaloPay)
+PaymentGateway --> Client: Trả kết quả thanh toán
+PaymentGateway -> Server: Gửi callback kết quả thanh toán
+Server -> Server: Cập nhật trạng thái đơn hàng
+Server --> PaymentGateway: Trả kết quả callback
+Client --> User: Hiển thị kết quả thanh toán và đơn hàng
+
+== 4. Quản lý sản phẩm ==
+User -> Client: Yêu cầu xem danh sách/chi tiết sản phẩm
+Client -> Server: Gửi yêu cầu lấy danh sách/chi tiết sản phẩm
+Server --> Client: Trả dữ liệu sản phẩm
+Client --> User: Hiển thị sản phẩm
+
+== 5. Quản lý đơn hàng ==
+User -> Client: Yêu cầu xem danh sách/chi tiết đơn hàng
+Client -> Server: Gửi yêu cầu lấy danh sách/chi tiết đơn hàng
+Server --> Client: Trả dữ liệu đơn hàng
+Client --> User: Hiển thị đơn hàng
+User -> Client: Yêu cầu cập nhật trạng thái đơn hàng (admin)
+Client -> Server: Gửi yêu cầu cập nhật trạng thái
+Server --> Client: Trả kết quả cập nhật
+Client --> User: Hiển thị kết quả
+@enduml

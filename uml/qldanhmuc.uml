@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+  (Quản lý danh mục) as manage_category
+  (Tạo danh mục) as create_category
+  (Sửa danh mục) as edit_category
+  (Xóa danh mục) as delete_category
+  (Tên danh mục) as category_name
+  (Slug) as category_slug
+  (Mô tả) as description
+  (Trạng thái) as status
+  
+  manager --> manage_category
+  
+  manage_category .> create_category
+  manage_category .> edit_category
+  manage_category .> delete_category
+  
+  create_category .> category_name : <<include>>
+  create_category .> category_slug : <<include>>
+  create_category .> description : <<include>>
+  create_category .> status : <<include>>
+  
+  edit_category .> category_name : <<include>>
+  edit_category .> category_slug : <<include>>
+  edit_category .> description : <<include>>
+  edit_category .> status : <<include>>
+}
+@enduml

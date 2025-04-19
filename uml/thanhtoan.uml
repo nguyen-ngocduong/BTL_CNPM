@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Thanh toán) as checkout
+  (Thông tin đơn hàng) as order_info
+  (Tên) as name
+  (Địa chỉ) as address
+  (Ghi chú) as note
+  (Phương thức thanh toán) as payment_method
+  (Tiền mặt) as cash
+  (ZaloPay) as zalopay
+  (Thông tin giỏ hàng) as cart_info
+  (Mã giảm giá) as discount_code
+  
+  user --> checkout
+  
+  checkout .> order_info : <<include>>
+  order_info .> name : <<include>>
+  order_info .> address : <<include>>
+  order_info .> note : <<include>>
+  
+  checkout .> payment_method : <<include>>
+  payment_method .> cash : <<include>>
+  payment_method .> zalopay : <<include>>
+  checkout .> cart_info : <<include>>
+  cart_info .> discount_code : <<include>>
+}
+@enduml

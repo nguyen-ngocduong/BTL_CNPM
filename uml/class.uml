@@ -1,0 +1,142 @@
+@startuml
+class User {
+  +id: number
+  +fullName: string
+  +phone: string
+  +address: string
+  +username: string
+  -password: string
+  +roles: Role[]
+  +createdDate: Date
+  +updatedDate: Date
+}
+
+class Product {
+  +id: number
+  +name: string
+  +slug: string
+  +description: string
+  +isNew: boolean
+  +isActive: boolean
+  +isPopular: boolean
+  +createdDate: Date
+  +updatedDate: Date
+}
+
+class Order {
+  +id: number
+  +fullName: string
+  +phone: number
+  +address: string
+  +note: string
+  +shippingCost: number
+  +orderStatus: OrderStatus
+  +totalPrice: number
+  +paymentMethod: string
+  +isPaid: boolean
+  +paidDate: Date
+  +createdDate: Date
+  +updatedDate: Date
+}
+
+class OrderItem {
+  +id: number
+  +orderId: number
+  +variantId: number
+  +orderedPrice: number
+  +orderedQuantity: number
+}
+
+class Category {
+  +id: number
+  +name: string
+  +slug: string
+  +description: string
+  +isActive: boolean
+}
+
+class CartItem {
+  +id: number
+  +userId: number
+  +productId: number
+  +quantity: number
+}
+
+class Variant {
+  +id: number
+  +price: number
+  +quantity: number
+}
+
+User "1" -- "0..*" Order : places >
+User "1" -- "0..*" CartItem : owns >
+Order "1" -- "0..*" OrderItem : contains >
+OrderItem "1" -- "1" Variant : refers to >
+Product "1" -- "0..*" Category : belongs to >
+Product "1" -- "0..*" CartItem : included in >
+Product "1" -- "0..*" Variant : has >
+Category "1" -- "0..*" Product : contains >
+Variant "1" -- "0..*" OrderItem : included in >
+CartItem "1" -- "1" User : belongs to >
+CartItem "1" -- "1" Product : refers to >
+
+class Attribute {
+  +id: number
+  +name: string
+}
+
+class Specification {
+  +id: number
+  +product_name: string
+  +refresh_rate: string
+  +technology: string
+  +resolution: string
+  +size: string
+  +brightness: string
+  +features: string
+  +capacity: string
+  +fast_charge: string
+  +wireless_charge: string
+  +chipset: string
+  +ram: string
+  +storage: string
+  +name: string
+  +version: string
+  +sim: string
+  +wifi: string
+  +bluetooth: string
+  +gps: string
+  +nfc: string
+  +material: string
+  +weight: string
+  +dimensions: string
+  +waterproof: string
+  +speaker: string
+  +jack: string
+  +sensors: string
+  +created_at: Date
+  +updated_at: Date
+}
+
+class AttributeValue {
+  +id: number
+  +value: string
+}
+
+class Image {
+  +id: number
+  +publicId: string
+  +url: string
+}
+
+class Comment {
+  +id: number
+  +content: string
+  +createdAt: Date
+}
+
+Attribute "1" -- "0..*" AttributeValue : contains >
+AttributeValue "0..*" -- "0..*" Variant : linked >
+Specification "0..*" -- "1" Product : belongs to >
+Image "0..*" -- "1" Product : belongs to >
+Comment "0..*" -- "1" Product : belongs to >

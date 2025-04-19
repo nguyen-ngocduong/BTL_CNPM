@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Đổi mật khẩu) as change_pass
+  (Nhập mật khẩu cũ) as old_pass
+  (Nhập mật khẩu mới) as new_pass
+  (Kiểm tra hợp lệ) as validate
+  (Nhập lại mật khẩu mới) as re_enter
+  
+  user --> change_pass
+  
+  change_pass .> old_pass : <<include>>
+  change_pass .> new_pass : <<include>>
+  change_pass .> validate : <<include>>
+  change_pass .> re_enter : <<include>>
+  
+  validate .> new_pass : <<verify>>
+  validate .> re_enter : <<verify>>
+}
+@enduml

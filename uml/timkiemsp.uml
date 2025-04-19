@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (tìm kiếm sản phẩm) as search
+  (danh mục) as category
+  (tên sản phẩm) as product_name
+  
+  user --> search
+  search .> category : <<include>>
+  search .> product_name : <<include>>
+}
+@enduml

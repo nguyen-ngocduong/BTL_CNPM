@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Khách_hàng
+actor Quản_lý
+
+rectangle "Hệ thống bán hàng" {
+  (tìm kiếm sản phẩm) as search
+  (xem sản phẩm) as view
+  (thanh toán) as payment
+  (đăng ký/đăng nhập) as auth
+  (chatbot) as chatbot
+  (kiểm tra đơn hàng) as check_order
+  (giỏ hàng) as cart
+  (sửa thông tin cá nhân) as profile
+  (đổi mật khẩu) as change_pass
+  (quản lý danh mục) as manage_cat
+  (quản lý sản phẩm) as manage_prod
+  (quản lý nhân viên) as manage_staff
+  (thống kê) as stats
+  (quản lý đơn hàng) as manage_order
+  
+  Khách_hàng --> search
+  Khách_hàng --> view
+  Khách_hàng --> payment
+  Khách_hàng --> auth
+  Khách_hàng --> chatbot
+  Khách_hàng --> check_order
+  Khách_hàng --> cart
+  Khách_hàng --> profile
+  Khách_hàng --> change_pass
+  
+  Quản_lý --> manage_cat
+  Quản_lý --> manage_prod
+  Quản_lý --> manage_order
+  Quản_lý --> manage_staff
+  Quản_lý --> stats
+  
+  payment .> cart : <<include>>
+  payment .> auth : <<include>>
+  manage_cat .> manage_prod : <<include>>
+  auth .> profile : <<include>>
+  auth .> payment : <<include>>
+  search .> view : <<include>>
+}
+@enduml

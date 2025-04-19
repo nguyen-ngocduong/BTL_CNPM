@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Kiểm tra đơn hàng) as check_order
+  (Lịch sử đơn hàng) as order_history
+  (Trạng thái đơn) as order_status
+  (Chi tiết đơn) as order_details
+  
+  user --> check_order
+  
+  check_order .> order_history : <<include>>
+  check_order .> order_status : <<include>>
+  check_order .> order_details : <<include>>
+}
+
+@enduml

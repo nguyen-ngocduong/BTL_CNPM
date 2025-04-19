@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+  (Thống kê) as stats
+  (Tổng doanh thu) as total_revenue
+  (Tổng đơn hàng) as total_orders
+  (Tổng sản phẩm) as total_products
+  (Biểu đồ thống kê) as chart
+  (Tổng quan) as dashboard
+  (Sản phẩm bán chạy) as best_sellers
+  (Đơn hàng mới nhất) as latest_orders
+  
+  manager --> stats
+  
+  stats .> total_revenue : <<include>>
+  stats .> total_orders : <<include>>
+  stats .> total_products : <<include>>
+  stats .> chart : <<include>>
+  stats .> dashboard : <<include>>
+  stats .> best_sellers : <<include>>
+  stats .> latest_orders : <<include>>
+  
+}
+
+@enduml

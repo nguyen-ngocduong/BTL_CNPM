@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Sửa thông tin cá nhân) as edit_profile
+  (Họ và tên) as full_name
+  (Số điện thoại) as phone
+  (Địa chỉ) as address
+  
+  user --> edit_profile
+  
+  edit_profile .> full_name : <<include>>
+  edit_profile .> phone : <<include>>
+  edit_profile .> address : <<include>>
+}
+
+@enduml

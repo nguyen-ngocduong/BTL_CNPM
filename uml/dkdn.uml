@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (đăng ký) as register
+  (đăng nhập) as login
+  (nhập thông tin) as input_info
+  (kiểm tra hợp lệ) as validate
+  (kiểm tra tồn tại) as check_exist
+  (tạo tài khoản) as create_acc
+  (tạo phiên) as create_session
+  (đăng xuất) as logout
+  
+  user --> register
+  user --> login
+  user --> logout
+  
+  register .> input_info : <<include>>
+  input_info .> validate : <<include>>
+  input_info .> check_exist : <<include>>
+  register .> create_acc : <<include>>
+  login .> input_info : <<include>>
+  login .> create_session : <<include>>
+  create_session .> logout : <<include>>
+}
+@enduml

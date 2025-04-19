@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  (Giỏ hàng) as cart
+  (Thông tin sản phẩm) as product_info
+  (Số lượng sản phẩm) as quantity
+  (Thành tiền) as total
+  (Bỏ sp khỏi giỏ) as remove
+  (Thanh toán) as checkout
+  
+  user --> cart
+  
+  cart .> product_info : <<include>>
+  cart .> quantity : <<include>>
+  cart .> total : <<include>>
+  cart .> remove : <<include>>
+  cart .> checkout : <<include>>
+}
+@enduml

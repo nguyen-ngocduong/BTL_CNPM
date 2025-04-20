@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+
+  package "Thông tin sản phẩm" {
+    (Xem sản phẩm) as view_product
+    (Danh mục sản phẩm) as category
+    (Thông số kỹ thuật) as specs
+    (Giá bán) as price
+    (Biến thể sản phẩm) as variants
+  }
+
+  package "Tương tác người dùng" {
+    (Xem bình luận) as view_reviews
+    (Gửi bình luận) as post_review
+    (Thêm vào giỏ hàng) as add_to_cart
+    (Chọn số lượng) as quantity
+  }
+
+  user --> view_product
+
+  view_product --> category : <<include>>
+  view_product --> specs : <<include>>
+  view_product --> price : <<include>>
+  view_product --> variants : <<include>>
+  view_product --> view_reviews : <<include>>
+  view_product --> add_to_cart : <<extend>>
+
+  view_reviews --> post_review : <<extend>>
+  add_to_cart --> quantity : <<extend>>
+}
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+
+  (Đăng nhập) as signin
+
+  package "Sửa thông tin cá nhân" {
+    (Sửa họ và tên) as name
+    (Sửa địa chỉ cá nhân) as address
+    (Sửa số điện thoại) as note
+    (Sửa thông tin cá nhân) as config
+  }
+
+  package "Đổi mật khẩu" {
+    (Đổi mật khẩu) as change_password
+    (Nhập mật khẩu cũ) as old_password
+    (Nhập lại mật khẩu mới) as reenter_new_password
+    (Kiểm tra hợp lệ) as verify
+  }
+
+  user --> signin
+
+  signin --> config : <<include>>
+  config --> name : <<include>>
+  config --> address : <<include>>
+  config --> note : <<include>>
+
+  signin --> change_password : <<include>>
+  change_password --> old_password : <<include>>
+  change_password --> reenter_new_password : <<include>>
+  change_password --> verify : <<include>>
+  reenter_new_password --> verify : <<verify>>
+
+}
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+
+  (Thanh toán) as checkout
+
+  package "Thông tin đơn hàng" {
+    (Nhập tên người nhận) as name
+    (Nhập địa chỉ giao hàng) as address
+    (Ghi chú đơn hàng) as note
+    (Xem thông tin đơn hàng) as order_info
+  }
+
+  package "Phương thức thanh toán" {
+    (Chọn phương thức thanh toán) as payment_method
+    (Thanh toán bằng tiền mặt) as cash
+    (Thanh toán bằng ZaloPay) as zalopay
+  }
+
+  package "Giỏ hàng" {
+    (Xem thông tin giỏ hàng) as cart_info
+    (Áp dụng mã giảm giá) as discount_code
+  }
+
+  user --> checkout
+
+  checkout --> order_info : <<include>>
+  order_info --> name : <<include>>
+  order_info --> address : <<include>>
+  order_info --> note : <<include>>
+
+  checkout --> payment_method : <<include>>
+  payment_method --> cash : <<include>>
+  payment_method --> zalopay : <<include>>
+
+  checkout --> cart_info : <<include>>
+  cart_info --> discount_code : <<include>>
+}
+@enduml

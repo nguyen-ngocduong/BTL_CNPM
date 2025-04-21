@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+
+  (Xem thống kê hệ thống) as stats
+
+  package "Chỉ số tổng quan" {
+    (Tổng doanh thu) as total_revenue
+    (Tổng số đơn hàng) as total_orders
+    (Tổng số sản phẩm) as total_products
+  }
+
+  package "Phân tích & trực quan" {
+    (Biểu đồ thống kê) as chart
+    (Tổng quan hệ thống) as dashboard
+    (Sản phẩm bán chạy) as best_sellers
+    (Đơn hàng mới nhất) as latest_orders
+  }
+
+  manager --> stats
+
+  stats --> total_revenue : <<include>>
+  stats --> total_orders : <<include>>
+  stats --> total_products : <<include>>
+  stats --> chart : <<include>>
+  stats --> dashboard : <<include>>
+  stats --> best_sellers : <<include>>
+  stats --> latest_orders : <<include>>
+}
+@enduml

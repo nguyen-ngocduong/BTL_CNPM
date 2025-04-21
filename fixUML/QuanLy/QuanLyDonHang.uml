@@ -1,0 +1,57 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+
+  (Quản lý đơn hàng) as manage_order
+
+  package "Tác vụ đơn hàng" {
+    (Xem danh sách đơn hàng) as view_orders
+    (Tìm kiếm đơn hàng) as search_order
+    (Xem chi tiết đơn hàng) as view_order_detail
+    (Chỉnh sửa đơn hàng) as edit_order
+    (Hủy đơn hàng) as cancel_order
+  }
+
+  package "Thông tin đơn hàng" {
+    (Mã đơn hàng) as order_code
+    (Tên khách hàng) as customer_name
+    (Tài khoản khách hàng) as account
+  }
+
+  package "Trạng thái đơn hàng" {
+    (Trạng thái đơn hàng) as order_status
+    (Đang xử lý) as processing
+    (Đang giao hàng) as delivering
+    (Đã giao hàng) as delivered
+    (Đã thanh toán) as paid
+    (Hoàn tiền) as refunded
+    (Trả hàng) as returned
+  }
+
+  manager --> manage_order
+
+  manage_order --> view_orders
+  manage_order --> search_order
+  manage_order --> view_order_detail
+  manage_order --> edit_order
+  manage_order --> cancel_order
+
+  view_order_detail --> order_code : <<include>>
+  view_order_detail --> customer_name : <<include>>
+  view_order_detail --> account : <<include>>
+
+  edit_order --> order_status : <<include>>
+
+  order_status --> processing : <<include>>
+  order_status --> delivering : <<include>>
+  order_status --> delivered : <<include>>
+  order_status --> refunded : <<include>>
+  order_status --> returned : <<include>>
+  delivered --> paid : <<include>>
+}
+@enduml

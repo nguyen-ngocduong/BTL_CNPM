@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Người dùng" as user
+
+rectangle "Hệ thống bán hàng" {
+  
+  package "Đăng ký" {
+    (Đăng ký) as register
+    (Nhập thông tin đăng ký) as input_info
+    (Kiểm tra hợp lệ) as validate
+    (Kiểm tra tồn tại) as check_exist
+    (Tạo tài khoản) as create_acc
+  }
+
+  package "Đăng nhập" {
+    (Đăng nhập) as login
+    (Tạo phiên làm việc) as create_session
+    (Đăng xuất) as logout
+  }
+
+  user --> register
+  user --> login
+  user --> logout
+
+  register --> input_info : <<include>>
+  input_info --> validate : <<include>>
+  input_info --> check_exist : <<include>>
+  register --> create_acc : <<include>>
+
+  login --> input_info : <<include>>
+  login --> create_session : <<include>>
+  create_session --> logout : <<include>>
+}
+@enduml

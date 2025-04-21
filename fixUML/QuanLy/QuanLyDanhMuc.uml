@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Quản lý" as manager
+
+rectangle "Hệ thống bán hàng" {
+
+  (Quản lý danh mục sản phẩm) as manage_category
+
+  package "Chức năng danh mục" {
+    (Tạo danh mục) as create_category
+    (Sửa danh mục) as edit_category
+    (Xóa danh mục) as delete_category
+  }
+
+  package "Thông tin danh mục" {
+    (Tên danh mục) as category_name
+    (Slug danh mục) as category_slug
+    (Mô tả danh mục) as description
+    (Trạng thái danh mục) as status
+  }
+
+  manager --> manage_category
+
+  manage_category --> create_category
+  manage_category --> edit_category
+  manage_category --> delete_category
+
+  create_category --> category_name : <<include>>
+  create_category --> category_slug : <<include>>
+  create_category --> description : <<include>>
+  create_category --> status : <<include>>
+
+  edit_category --> category_name : <<include>>
+  edit_category --> category_slug : <<include>>
+  edit_category --> description : <<include>>
+  edit_category --> status : <<include>>
+}
+@enduml

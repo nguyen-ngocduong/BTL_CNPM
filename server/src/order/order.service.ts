@@ -178,6 +178,7 @@ export class OrderService {
   }
 
   async salesStatistic(year: string) {
+<<<<<<< HEAD
     // Select paymentMethod as method, SUM(totalPrice) as total
     // from Order
     // where isPaid = true and paidDate IS NOT NULL and YEAR(paidDate) = @year
@@ -192,6 +193,17 @@ export class OrderService {
         `isPaid = true and paidDate IS NOT NULL and YEAR(paidDate) = ${year}`,
       )
       .groupBy('paymentMethod, MONTH(paidDate)')
+=======
+    return this.ordersRepo
+      .createQueryBuilder('order')
+      .select('order.paymentMethod', 'method')
+      .addSelect('EXTRACT(MONTH FROM order.paidDate)', 'month')
+      .addSelect('SUM(order.totalPrice)', 'total')
+      .where(
+        `order.isPaid = true and order.paidDate IS NOT NULL and EXTRACT(YEAR FROM order.paidDate) = ${year}`,
+      )
+      .groupBy('order.paymentMethod, EXTRACT(MONTH FROM order.paidDate)')
+>>>>>>> triuduongg
       .getRawMany();
   }
 
@@ -202,9 +214,15 @@ export class OrderService {
   async overview() {
     return await this.ordersRepo
       .createQueryBuilder('order')
+<<<<<<< HEAD
       .select('orderStatus')
       .addSelect('COUNT(order.id)', 'total')
       .groupBy('orderStatus')
+=======
+      .select('order.orderStatus')
+      .addSelect('COUNT(order.id)', 'total')
+      .groupBy('order.orderStatus')
+>>>>>>> triuduongg
       .getRawMany();
   }
 
@@ -212,17 +230,30 @@ export class OrderService {
     const yy = new Date().getFullYear().toString().slice(-2);
     const mm = String(new Date(Date.now()).getMonth() + 1).padStart(2, '0');
     const dd = String(new Date(Date.now()).getUTCDate()).padStart(2, '0');
+<<<<<<< HEAD
 
     const items = order.orderItems.map((o) => {
       let attributes = '';
 
+=======
+  
+    const items = order.orderItems.map((o) => {
+      let attributes = '';
+  
+>>>>>>> triuduongg
       for (const [i, at] of o.variant.attributeValues.entries() as any) {
         attributes += i === 0 ? ' - ' : ', ';
         attributes += `${at.value}`;
       }
+<<<<<<< HEAD
 
       const itemname = o.variant.product?.name + attributes;
 
+=======
+  
+      const itemname = o.variant.product?.name + attributes;
+  
+>>>>>>> triuduongg
       return {
         itemid: o.id,
         itemname,
@@ -230,14 +261,23 @@ export class OrderService {
         itemquantity: o.orderedQuantity,
       };
     });
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> triuduongg
     const server_uri =
       process.env.NODE_ENV === 'development'
         ? 'https://57c4-101-99-32-135.ap.ngrok.io'
         : process.env.SERVER;
+<<<<<<< HEAD
     // ngrok http --host-header=localhost http://localhost:4000
     const callback_url = `${server_uri}/order/zalopay/callback`;
 
+=======
+    const callback_url = `${server_uri}/order/zalopay/callback`;
+  
+>>>>>>> triuduongg
     const params = {
       app_id: 2553,
       app_user: order.fullName,
@@ -256,7 +296,16 @@ export class OrderService {
       mac: '',
       callback_url,
     };
+<<<<<<< HEAD
 
+=======
+  
+    const key1 = process.env.ZALO_KEY1;
+    if (!key1) {
+      throw new InternalServerErrorException('ZALO_KEY1 environment variable is not set');
+    }
+  
+>>>>>>> triuduongg
     const data =
       params.app_id +
       '|' +
@@ -271,6 +320,7 @@ export class OrderService {
       params.embed_data +
       '|' +
       params.item;
+<<<<<<< HEAD
 
     const key1 = process.env.ZALO_KEY1;
 
@@ -278,6 +328,12 @@ export class OrderService {
     const mac = createHmac('sha256', key1).update(data).digest('hex');
     params.mac = mac;
 
+=======
+  
+    const mac = createHmac('sha256', key1).update(data).digest('hex');
+    params.mac = mac;
+  
+>>>>>>> triuduongg
     try {
       return (
         await firstValueFrom(
@@ -287,10 +343,17 @@ export class OrderService {
         )
       ).data;
     } catch (error) {
+<<<<<<< HEAD
       // console.log(error);
       throw new InternalServerErrorException('ZaloPay Error');
     }
   }
+=======
+      throw new InternalServerErrorException('ZaloPay Error');
+    }
+  }
+  
+>>>>>>> triuduongg
 
   async checkOrderUser(data) {
     const exist = await this.ordersRepo.findOne({

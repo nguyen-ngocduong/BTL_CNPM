@@ -79,10 +79,18 @@ export class UserService {
           username: Like(`%${name}%`),
         },
       ])
+<<<<<<< HEAD
       .andWhere(':role1 IN(user.roles) or :role2 IN(user.roles)', {
         role1: Role.Manager,
         role2: Role.Employee,
       })
+=======
+      .andWhere(':role1 = ANY(user.roles) OR :role2 = ANY(user.roles)', {
+        role1: Role.Manager,
+        role2: Role.Employee,
+      })
+      
+>>>>>>> triuduongg
       .orderBy('user.updatedDate', 'DESC'); // Or whatever you need to do
 
     return paginate<User>(queryBuilder, options);

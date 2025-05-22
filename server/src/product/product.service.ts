@@ -18,6 +18,10 @@ import { Variant } from './../variant/entities/variant.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
+<<<<<<< HEAD
+=======
+import { Specification } from 'src/specification/entities/specification.entity';
+>>>>>>> triuduongg
 
 @Injectable()
 export class ProductService {
@@ -28,6 +32,7 @@ export class ProductService {
     private imageRepo: Repository<Image>,
     @InjectRepository(Variant)
     private variantRepo: Repository<Variant>,
+<<<<<<< HEAD
   ) {}
 
   async topSelling() {
@@ -40,6 +45,13 @@ export class ProductService {
     // limit 6
     // group by Product.name
 
+=======
+    @InjectRepository(Specification)
+    private specificationRepo: Repository<Specification>,
+  ) {}
+
+  async topSelling() {
+>>>>>>> triuduongg
     return this.productRepo
       .createQueryBuilder('product')
       .select('product.name', 'name')
@@ -48,11 +60,20 @@ export class ProductService {
       .leftJoin(OrderItem, 'oi', 'v.id = oi.variantId')
       .leftJoin(Order, 'o', 'o.id = oi.orderId')
       .groupBy('product.name')
+<<<<<<< HEAD
       .having('sold > 0')
       .orderBy('sold', 'DESC')
       .limit(5)
       .getRawMany();
   }
+=======
+      .having('SUM(oi.orderedQuantity) > 0')
+      .orderBy('sold', 'DESC')
+      .limit(6)
+      .getRawMany();
+  }
+  
+>>>>>>> triuduongg
 
   async findAllForAdmin(
     options: IPaginationOptions,
@@ -221,7 +242,15 @@ export class ProductService {
     });
     if (slug) throw new BadRequestException('Slug already exist');
 
+<<<<<<< HEAD
     const { images, variants } = createProductDto;
+=======
+    let { images, variants, ...productData } = createProductDto;
+
+    // Remove id from images and variants to avoid duplicate key error
+    images = images.map(({ id, ...rest }) => rest) as any;
+    variants = variants.map(({ id, ...rest }) => rest) as any;
+>>>>>>> triuduongg
 
     let duplicateVariant = false;
     for (let i = 0; i < variants.length; i++) {
@@ -237,9 +266,24 @@ export class ProductService {
     if (duplicateVariant)
       throw new BadRequestException('Duplicate variant attributes');
 
+<<<<<<< HEAD
     await this.imageRepo.save(images);
     await this.variantRepo.save(variants);
     return this.productRepo.save({ ...createProductDto });
+=======
+    // Save product first
+    const product = await this.productRepo.save(productData);
+
+    // Assign product to images and variants
+    images = images.map(image => ({ ...image, product }));
+    variants = variants.map(variant => ({ ...variant, product }));
+
+    // Use insert instead of save to avoid updating existing records
+    await this.imageRepo.insert(images);
+    await this.variantRepo.insert(variants);
+
+    return product;
+>>>>>>> triuduongg
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
@@ -284,7 +328,23 @@ export class ProductService {
 
     await this.imageRepo.save(images);
     await this.variantRepo.save(variants);
+<<<<<<< HEAD
     return this.productRepo.save({ id, ...updateProductDto });
+=======
+    const updatedProduct = await this.productRepo.save({ id, ...updateProductDto });
+
+    // Update product_name in specifications if product name changed
+    if (updateProductDto.name && updateProductDto.name !== exist.name) {
+      await this.specificationRepo
+        .createQueryBuilder()
+        .update()
+        .set({ product_name: updateProductDto.name })
+        .where("productId = :productId", { productId: id })
+        .execute();
+    }
+
+    return updatedProduct;
+>>>>>>> triuduongg
   }
 
   async remove(id: number) {

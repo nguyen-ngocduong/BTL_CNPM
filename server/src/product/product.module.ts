@@ -5,6 +5,10 @@ import { CategoryModule } from './../category/category.module';
 import { Image } from './../image/entities/image.entity';
 import { Variant } from './../variant/entities/variant.entity';
 import { Product } from './entities/product.entity';
+<<<<<<< HEAD
+=======
+import { Specification } from 'src/specification/entities/specification.entity';
+>>>>>>> triuduongg
 import {
   ProductAdminController,
   ProductController,
@@ -13,7 +17,11 @@ import { ProductService } from './product.service';
 
 @Module({
   imports: [
+<<<<<<< HEAD
     TypeOrmModule.forFeature([Product, Image, Variant]),
+=======
+    TypeOrmModule.forFeature([Product, Image, Variant, Specification]),
+>>>>>>> triuduongg
     AttributeModule,
     CategoryModule,
   ],

@@ -1,0 +1,35 @@
+import { Product } from 'src/product/entities/product.entity';
+export declare class Specification {
+    id: number;
+    product_name: string;
+    refresh_rate: string;
+    technology: string;
+    resolution: string;
+    size: string;
+    brightness: string;
+    features: string;
+    capacity: string;
+    fast_charge: string;
+    wireless_charge: string;
+    chipset: string;
+    ram: string;
+    storage: string;
+    name: string;
+    version: string;
+    sim: string;
+    wifi: string;
+    bluetooth: string;
+    gps: string;
+    nfc: string;
+    material: string;
+    weight: string;
+    dimensions: string;
+    waterproof: string;
+    speaker: string;
+    jack: string;
+    sensors: string;
+    created_at: Date;
+    updated_at: Date;
+    product: Product;
+    productId: number;
+}

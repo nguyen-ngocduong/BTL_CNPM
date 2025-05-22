@@ -23,7 +23,11 @@ export class Variant {
   quantity: number;
 
   @ManyToOne(() => Product, (product) => product.variants, {
+<<<<<<< HEAD
     cascade: true,
+=======
+    // Removed cascade to avoid duplicate key error on save
+>>>>>>> triuduongg
     onDelete: 'CASCADE',
     orphanedRowAction: 'delete',
   })

@@ -1,4 +1,4 @@
-# Bài Tập Lớn Công Nghệ Phần Mềm - Nhóm 12
+# Bài Tập Lớn Công Nghệ Phần Mềm - Nhóm 11
 
 ## Đề tài: Quản lý website bán  hàng Điện thoại - Laptop
 
@@ -19,7 +19,9 @@
 ```
 https://docs.google.com/document/d/1KRz6V3NhTmx043ImPit2GOwUrxpKmOzAJ1XymLeVEgQ/edit?tab=t.27urkhm9twce
 ```
-
+```
+link folder: https://drive.google.com/drive/folders/1oShgxhBJelY-0qKWGzRO8nCA9ro8tYv-?hl=vi
+```
 ### Yêu cầu:
 
 ![alt text](jpg/anh1.jpeg)

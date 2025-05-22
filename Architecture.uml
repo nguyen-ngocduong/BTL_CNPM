@@ -1,0 +1,27 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+skinparam wrapWidth 20
+
+actor NguoiDung as "Người dùng\n(Trình duyệt Web)"
+
+component "Bộ cân bằng tải\n(Load Balancer)" as LB
+component "Frontend - Next.js" as FE
+component "Backend - NestJS" as BE
+database "PostgreSQL" as DB
+database "Bộ nhớ đệm\n(Redis)" as Cache
+component "Dịch vụ Chatbot" as Chatbot
+
+' Kết nối chính
+NguoiDung --> LB : Gửi yêu cầu HTTPS
+LB --> FE : Chuyển tiếp yêu cầu
+FE --> BE : Gửi yêu cầu REST API
+BE --> DB : Truy vấn / lưu dữ liệu
+BE --> Cache : Lưu phiên / giỏ hàng
+BE --> Chatbot : Gửi / nhận dữ liệu hỗ trợ
+Chatbot --> NguoiDung : Phản hồi hỗ trợ khách hàng
+
+' Giao diện trả về
+FE --> NguoiDung : Giao diện đã render
+
+@enduml
